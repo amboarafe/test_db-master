@@ -23,5 +23,17 @@ function list_departments(){
     }
     mysqli_free_result($news_req);
     return $result;
+}  
+   
+function list_formulaire($choix){
+    $sql="$choix";
+    echo $sql;
+    $news_req=mysqli_query(dbconnect(),$sql);
+    $result=array();
+    while($news=mysqli_fetch_assoc($news_req)){
+        $result[]=$news;
+    }
+    mysqli_free_result($news_req);
+    return $result;
 }   
 ?>

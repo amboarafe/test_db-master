@@ -45,6 +45,6 @@ include "function.php";
             </div>
         </div>
     </div>
-    
+    <a href="formulaire.php">vers le formulaire</a>
 </body>
 </html>
