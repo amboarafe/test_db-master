@@ -1,35 +1,14 @@
 <?php
-include "function.php";
 session_start();
+include "function.php";
 
-$choix = null;
-$info = "";
-$partie=1;
-if(!empty($_SESSION['choix'])&&!empty($_SESSION['info'])){
-        $choix=$_SESSION['choix'];
-        $info=$_SESSION['info'];
-    }
-// On cherche le premier champ qui n'est pas vide
-if (!empty($_POST['nom'])) {
-    $info = $_POST['nom'];
-    $choix = 0;
-} elseif (!empty($_POST['departement'])) {
-    $info = $_POST['departement'];
-    $choix = 1;
-} elseif (!empty($_POST['min'])) {
-    $info = $_POST['min'];
-    $choix = 2;
-} elseif (!empty($_POST['max'])) {
-    $info = $_POST['max'];
-    $choix = 3;
-}
+$choix= $_SESSION['choix'];
+$info= $_SESSION['info'];
+$partie=2;
 
-// On n'exécute la recherche que si un critère a été choisi
 $liste = [];
 if ($choix !== null) {
     $liste = list_formulaire($partie, $choix, $info);
-    $_SESSION['choix']=$choix;
-    $_SESSION['info']=$info;
 }
 ?>
 
@@ -64,6 +43,6 @@ if ($choix !== null) {
         echo "<div class='alert alert-danger'>Aucun résultat trouvé ou aucun critère saisi.</div>";
     }
     ?>
-    <a href="prochain.php" class="text-decoration-none lien fw-bold">suivant</a>
+    <a href="recherche.php" class="text-decoration-none lien fw-bold">precedent</a>
 </body>
 </html>

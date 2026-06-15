@@ -14,23 +14,22 @@ include "function.php";
 </head>
 <body>
     <form action="recherche.php" method="post">
-        <div class="mb-3">
-            <label for="nom" class="from-label">Nom de l'employer rechercher</label>
-            <input type="text" name="nom" class="from-control" id="nom" placeholder="Votre nom">
-        </div> 
-        <div class="mb-3">
-            <label for="departement" class="from-label">Nom du departement rechercher</label>
-            <input type="text" name="departement" class="from-control" id="departement" placeholder="Votre departement">
-        </div> 
-        <div class="mb-3">
-            <label for="min" class="from-label">age max rechercher</label>
-            <input class="from-control" class="max" id="min" placeholder="max">
-        </div> 
-        <div class="mb-3">
-            <label for="max" class="from-label">age max rechercher</label>
-            <input class="from-control" class="max" id="min" placeholder="max">
-        </div> 
-        <button class="btn btn-danger" type="submit">valider</button>
-    </form>
-    
+    <div class="mb-3">
+        <p for="nom" class="form-label">Nom de l'employé recherché</p>
+        <input type="text" name="nom" class="form-control" id="nom" placeholder="Votre nom">
+    </div> 
+    <div class="mb-3">
+        <p for="departement" class="form-label">Nom du département recherché</p>
+        <input type="text" name="departement" class="form-control" id="departement" placeholder="Votre département">
+    </div> 
+    <div class="mb-3">
+        <p for="min" class="form-label">Âge min recherché</p>
+        <input type="number" class="form-control" name="min" id="min" placeholder="min">
+    </div> 
+    <div class="mb-3">
+        <p for="max" class="form-label">Âge max recherché</p>
+        <input type="number" class="form-control" name="max" id="max" placeholder="max">
+    </div> 
+    <button class="btn btn-danger" type="submit">Valider</button>
+</form>
 </body>

@@ -24,16 +24,50 @@ function list_departments(){
     mysqli_free_result($news_req);
     return $result;
 }  
-   
-function list_formulaire($choix){
-    $sql="$choix";
-    echo $sql;
-    $news_req=mysqli_query(dbconnect(),$sql);
-    $result=array();
-    while($news=mysqli_fetch_assoc($news_req)){
-        $result[]=$news;
+  
+function list_formulaire($partie, $choix, $info){
+    $db = dbconnect();
+    // Sécurisation basique contre les injections SQL
+    $info = mysqli_real_escape_string($db, $info); 
+    $sql = "";
+    if($partie ==1){
+        $saut=20;
     }
-    mysqli_free_result($news_req);
+    if($partie ==2){
+        $saut=40;
+    }
+    if($choix == 0){
+        $sql = "SELECT * from employees where first_name LIKE '%$info%' LIMIT $saut,10";
+    }
+
+    if($choix == 1){
+        $sql = "SELECT e.* FROM employees e 
+                JOIN dept_emp de ON e.emp_no = de.emp_no 
+                JOIN departments d ON de.dept_no = d.dept_no 
+                WHERE d.dept_name LIKE '%$info%' LIMIT $saut, 10";
+    }
+
+    // Extraction de l'année de naissance pour calculer l'âge
+    if($choix == 2){
+        $sql = "SELECT * from employees where (YEAR(CURDATE()) - YEAR(birth_date)) >= $info LIMIT $saut, 10";
+    }
+
+    if($choix == 3){
+        $sql = "SELECT * from employees where (YEAR(CURDATE()) - YEAR(birth_date)) <= $info LIMIT $saut, 10";
+    }
+
+    if(empty($sql)) return array();
+
+    $news_req = mysqli_query($db, $sql);
+    $result = array();
+    
+    if($news_req){
+        while($news = mysqli_fetch_assoc($news_req)){
+            $result[] = $news;
+        }
+        mysqli_free_result($news_req);
+    }
+    
     return $result;
-}   
+}
 ?>
