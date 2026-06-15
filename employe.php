@@ -20,7 +20,7 @@ $req=mysqli_query(dbconnexion(),$sql);
     <table width="1000" border=1>
         <?php while($ligne=mysqli_fetch_assoc($req)) { ?>
             <tr class="pastel">                        
-                <td class="lien"><?php echo $ligne["first_name"]; ?></td>
+                <td ><a class="lien text-decoration-none fw-bold" href="fiche_employe.php?nom_employe=<?php echo $ligne["first_name"]; ?>"><?php echo $ligne["first_name"]; ?></a></td>
                 <td><?php echo $ligne["last_name"]; ?></td>
                 <td><?php echo $ligne["from_date"]; ?></td>
                 <td><?php echo $ligne["to_date"]; ?></td>

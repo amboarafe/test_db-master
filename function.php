@@ -24,6 +24,7 @@ function list_departments(){
     mysqli_free_result($news_req);
     return $result;
 }  
+
   
 function list_formulaire($partie, $choix, $info){
     $db = dbconnect();
