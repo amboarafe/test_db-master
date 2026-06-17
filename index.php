@@ -25,6 +25,7 @@ include "function.php";
                         <th>numero de departement</th>
                         <th>nom du departement</th>
                         <th>nom du manager en cours</th>
+                        <th>nombre d'employer</th>
                     </tr>
 
                     <? foreach($departement as $de){?>
@@ -37,6 +38,11 @@ include "function.php";
                         </td>
                         <td>
                             <? echo $de['first_name']; ?>
+                        </td>
+                        <td >
+                            <? foreach(nombre_emp($de['dept_no'] )as $nb_emp){
+                                echo $nb_emp['nb'];
+                            } ?>
                         </td>
                     </tr>
                     <? }?>
