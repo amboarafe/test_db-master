@@ -1,1 +1,2 @@
 select employees.first_name,employees.last_name,dept_emp.from_date,dept_emp.to_date,departments.dept_name from (dept_emp where dept_no = "d001") inner join employees on employees.emp_no = dept_emp.emp_no inner join departments on departments.dept_no = dept_emp.dept_no where dept_name="";
+select employees.*,titles.title,salaries.salary,salaries.from_date,salaries.to_date from employees inner join titles on titles.emp_no = employees.emp_no inner join salaries on salaries.emp_no= employees.emp_no where employees.emp_no = '%s';

@@ -1,7 +1,7 @@
 <?php
 include("fonction.php");
 $nom=$_GET["indice"];
-$sql="SELECT employees.first_name,employees.last_name,dept_emp.from_date,dept_emp.to_date,departments.dept_name from dept_emp inner join employees on employees.emp_no = dept_emp.emp_no inner join departments on departments.dept_no = dept_emp.dept_no where dept_name='%s'";
+$sql="SELECT employees.emp_no,employees.first_name,employees.last_name,dept_emp.from_date,dept_emp.to_date,departments.dept_name from dept_emp inner join employees on employees.emp_no = dept_emp.emp_no inner join departments on departments.dept_no = dept_emp.dept_no where dept_name='%s'";
 $sql=sprintf($sql,"$nom");
 $req=mysqli_query(dbconnexion(),$sql);
 ?>
@@ -20,7 +20,7 @@ $req=mysqli_query(dbconnexion(),$sql);
     <table width="1000" border=1>
         <?php while($ligne=mysqli_fetch_assoc($req)) { ?>
             <tr class="pastel">                        
-                <td class="lien"><?php echo $ligne["first_name"]; ?></td>
+                <td class="lien"><a href="fiche.php?indice=<?php echo $ligne["emp_no"]; ?>"><?php echo $ligne["first_name"]; ?></a></td>
                 <td><?php echo $ligne["last_name"]; ?></td>
                 <td><?php echo $ligne["from_date"]; ?></td>
                 <td><?php echo $ligne["to_date"]; ?></td>
