@@ -1,9 +1,11 @@
 <?php
-include("fonction.php");
+session_start();
+include "function.php";
 $numero=$_GET["indice"];
+$_SESSION['indice']=$numero;
 $sql="SELECT employees.*,titles.title,salaries.salary,salaries.from_date,salaries.to_date from employees inner join titles on titles.emp_no = employees.emp_no inner join salaries on salaries.emp_no= employees.emp_no where employees.emp_no = '%s';";
 $sql=sprintf($sql,$numero);
-$req=mysqli_query(dbconnexion(),$sql);
+$req=mysqli_query(dbconnect(),$sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,5 +48,10 @@ $req=mysqli_query(dbconnexion(),$sql);
         <?php } ?>
     </table>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <form action="formulaire_changement.php" method="get">
+        <button class="btn btn-warning" type="submit" >changer de departement</button>
+    </form>
+    
+
 </body>
 </html>

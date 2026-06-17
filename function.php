@@ -14,7 +14,7 @@ function dbconnect(){
 function list_departments(){
     $sql="SELECT de.dept_no, de.dept_name, em.first_name, em.last_name from departments as de
     join dept_manager as dem on dem.dept_no=de.dept_no
-    join employees as em on em.emp_no=dem.emp_no where year(to_date)>=2026";
+    join employees as em on em.emp_no=dem.emp_no where year(to_date)>=2026 ";
     $news_req=mysqli_query(dbconnect(),$sql);
     $result=array();
     while($news=mysqli_fetch_assoc($news_req)){
@@ -33,7 +33,18 @@ function nombre_emp($id_dept){
     mysqli_free_result($news_req);
     return $result;
 } 
-  
+
+function nom_dept(){
+    $sql="SELECT dept_name from departments";
+    $news_req=mysqli_query(dbconnect(),$sql);
+    $result=array();
+    while($news=mysqli_fetch_assoc($news_req)){
+        $result[]=$news;
+    }
+    mysqli_free_result($news_req);
+    return $result;
+}
+
 function list_formulaire($partie, $choix, $info){
     $db = dbconnect();
     // Sécurisation basique contre les injections SQL

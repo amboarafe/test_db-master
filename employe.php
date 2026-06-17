@@ -1,9 +1,14 @@
 <?php
-include("fonction.php");
+
+session_start();
+include("function.php");
 $nom=$_GET["indice"];
+$_SESSION['nom']=$nom;
+
+
 $sql="SELECT employees.emp_no,employees.first_name,employees.last_name,dept_emp.from_date,dept_emp.to_date,departments.dept_name from dept_emp inner join employees on employees.emp_no = dept_emp.emp_no inner join departments on departments.dept_no = dept_emp.dept_no where dept_name='%s'";
 $sql=sprintf($sql,"$nom");
-$req=mysqli_query(dbconnexion(),$sql);
+$req=mysqli_query(dbconnect(),$sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
